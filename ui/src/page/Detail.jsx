@@ -6,8 +6,7 @@ import reducer from '../utils/reducer';
 import useAuth from '../utils/useAuth';
 
 const initial_detail = {
-  dept_id: '',
-  dept_name: '',
+  dept: '',
   datime: dayjs().format('YYYY-MM-DD'),
   route: '',
   rail: '',
@@ -77,8 +76,7 @@ export default function Detail() {
       .fetch(`/api/nighthawk-001/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: 'dept_id', payload: data.dept.id });
-        dispatch({ type: 'dept_name', payload: data.dept.name });
+        dispatch({ type: 'dept', payload: data.dept });
         dispatch({ type: 'datime', payload: dayjs(data.datime).format('YYYY-MM-DD') });
         dispatch({ type: 'route', payload: data.route });
         dispatch({ type: 'rail', payload: data.rail });
@@ -147,21 +145,17 @@ export default function Detail() {
               <div className="col">
                 <label className="form-label">车间</label>
                 <select className="form-select"
-                  value={detail.dept_id}
+                  value={detail.dept}
                   onChange={(event) => {
                     dispatch({
-                      type: 'dept_id',
+                      type: 'dept',
                       payload: event.target.value,
-                    })
-                    dispatch({
-                      type: 'dept_name',
-                      payload: event.target.options[event.target.selectedIndex].text,
                     })
                   }}
                 >
                   <option value="">未选择</option>
                   {dept && dept.map((item) =>
-                    <option key={item.id} value={item.id}>{item.name}</option>)}
+                    <option key={item.id}>{item.name}</option>)}
                 </select>
               </div>
               <div className="col">
