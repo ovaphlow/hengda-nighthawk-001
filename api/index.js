@@ -37,13 +37,10 @@ router.post("/", async (ctx) => {
       insert into nighthawk."001" 
         (dept,datime,route,rail,gongdian,duandian,team) 
       values 
-        ($1::jsonb,$2,$3,$4,$5::jsonb,$6::jsonb,$7)
+        ($1,$2,$3,$4,$5::jsonb,$6::jsonb,$7)
     `;
 		await cnx.query(sql, [
-			JSON.stringify({
-				id: ctx.request.body.dept_id,
-				name: ctx.request.body.dept_name,
-			}),
+      ctx.request.body.dept,
 			ctx.request.body.datime,
 			ctx.request.body.route,
 			ctx.request.body.rail,
@@ -78,7 +75,7 @@ router.put("/:id", async (ctx) => {
       update  
         nighthawk."001" 
       set
-        dept = $1::jsonb,
+        dept = $1,
         datime = $2,
         route = $3,
         rail = $4,
@@ -88,10 +85,7 @@ router.put("/:id", async (ctx) => {
       where id = $8
     `;
 		await cnx.query(sql, [
-			JSON.stringify({
-				id: ctx.request.body.dept_id,
-				name: ctx.request.body.dept_name,
-			}),
+			ctx.request.body.dept,
 			ctx.request.body.datime,
 			ctx.request.body.route,
 			ctx.request.body.rail,

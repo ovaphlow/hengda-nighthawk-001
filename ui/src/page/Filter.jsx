@@ -10,7 +10,7 @@ const Editbar = React.lazy(() => import('../components/Editbar'));
 
 
 const initial_filter = {
-  dpet_id: '',
+  dpet: '',
   route: '',
   date1: dayjs().format('YYYY-MM-01'),
   date2: dayjs().format('YYYY-MM-DD'),
@@ -81,17 +81,17 @@ export default function Filter() {
           <div className="col">
             <label className="form-label">车间</label>
             <select className="form-select"
-              value={filter.dept_id}
+              value={filter.dept}
               onChange={(event) => {
                 dispatch({
-                  type: 'dept_id',
+                  type: 'dept',
                   payload: event.target.value,
                 })
               }}
             >
               <option value="">未选择</option>
               {dept && dept.map((item) =>
-                <option key={item.id} value={item.id}>{item.name}</option>)}
+                <option key={item.id}>{item.name}</option>)}
             </select>
           </div>
           <div className="col">

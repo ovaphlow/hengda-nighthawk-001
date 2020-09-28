@@ -14,7 +14,7 @@
 
 |中文名称|英文名|数据类型|备注|
 |:-:|:-:|:-:|:--:|
-|部门|dept|jsonb|通用数据，前端使用下拉框进行选择 数据存储格式 {id:numeber,name:text}|
+|部门|dept|jsonb|通用数据，前端使用下拉框进行选择|
 |日期|datime|timestamp| 逻辑格式 YYYY-MM-DD |
 |车次|route|varchar|通用数据，前端使用下拉框进行选择|
 |班组|team|varchar|通用数据，前端使用下拉框进行选择|
